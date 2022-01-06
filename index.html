@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Demo</title>
+    <script>
+        // function increment(){
+        //     var a = parseInt( document.getElementById("id1").innerHTML);
+        //     document.getElementById("id1").innerHTML = ++a;
+        // }
+
+
+        function local(){
+             localstorage = window.localStorage;
+            if(localstorage.getItem("myval") ===  null){
+                localstorage.setItem("myval","0");
+            }else{
+                var a = parseInt(localstorage.getItem("myval"))+1;
+                
+                localstorage.setItem("myval",a);
+                console.log(a);
+            }
+            document.getElementById("localStorage").innerHTML = localstorage.getItem("myval");
+           // localstorage.clear();
+        }
+
+        function session(){
+            sessionStorage = window.sessionStorage;
+            if(sessionStorage.getItem("sessionStore") === null){
+                sessionStorage.setItem("sessionStore","0");
+            }else{
+                let a = parseInt(sessionStorage.getItem("sessionStore"))+1;
+                sessionStorage.setItem("sessionStore",a);
+            }
+            document.getElementById("sessionStorage").innerHTML = sessionStorage.getItem("sessionStore");
+
+            //sessionStorage.clear();
+
+
+        }
+
+        function resetCounts(){
+            localstorage.clear();
+            sessionStorage.clear();
+            document.getElementById("localStorage").innerHTML = localstorage.getItem("myval");
+            document.getElementById("sessionStorage").innerHTML = sessionStorage.getItem("sessionStore");
+        }
+    </script>
+
+    <style>
+        #title1{
+          display: inline;
+          margin: 20px;
+
+        }
+        #localStorage{
+            display: inline;
+        }
+
+        #title2{
+            display: inline;
+            margin: 20px;
+        }
+
+        #sessionStorage{
+            display: inline;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <div>
+        <h1 id="title1" >local Storage :</h1>
+        <h1 id="localStorage" ></h1>
+    </div>
+    
+    <h1 id="title2">Session Storage :</h1>
+    <h1 id="sessionStorage"></h1><br><br><br>
+
+    <button onclick="local()">Local Storage</button>
+
+    <button onclick="session()">Session Storage</button>
+
+    <button onclick="resetCounts()">Reset Counts</button>
+
+
+    
+</body>
+</html>
